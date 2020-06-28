@@ -1,0 +1,36 @@
+WindowButton {
+    font-size: 16px;
+    text-align: center;
+}
+
+#CalculatorWindowTitle {
+    color: rgb(255, 255, 255);
+    font-size: 15px;
+    font-weight: bold;
+}
+
+CalculatorKeyboard QFrame {
+    color: white;
+    background-color: rgba(92, 100, 111, 1.0);
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+
+CalculatorDisplayer QLineEdit {
+    background-color: transparent;
+}
+
+CalculatorDisplayer #Primary {
+    color: #c5c5c5;
+    font-size: 36px;
+    selection-background-color: rgba(255, 255, 255, 0.2);
+}
+
+CalculatorDisplayer #Secondary {
+    font-size: 14px;
+    color: #7d7d7d;
+    selection-color: #7d7d7d;
+    selection-background-color: transparent;
+}
