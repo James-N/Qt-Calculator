@@ -14,7 +14,7 @@ class NodeTreeTest(unittest.TestCase):
         return parser.build_expression_tree(tokens)
 
     def setUp(self):
-        self.nodeComparator = NodeComparator()
+        self.node_comparator = NodeComparator()
 
     def test_basic_parsing(self):
         node = NodeTreeTest._to_node_tree('1 + 2 × 3')
@@ -31,7 +31,7 @@ class NodeTreeTest(unittest.TestCase):
             pos=2
         )
 
-        self.assertTrue(self.nodeComparator.compare(node, ref_node))
+        self.assertTrue(self.node_comparator.compare(node, ref_node))
 
         node = NodeTreeTest._to_node_tree('1.1 ÷ 0.5 - 4 × 2')
         ref_node = BinaryOpNode(
@@ -51,7 +51,7 @@ class NodeTreeTest(unittest.TestCase):
             pos=10
         )
 
-        self.assertTrue(self.nodeComparator.compare(node, ref_node))
+        self.assertTrue(self.node_comparator.compare(node, ref_node))
 
         node = NodeTreeTest._to_node_tree('1 ÷ 2 × 3')
         ref_node = BinaryOpNode(
@@ -66,7 +66,7 @@ class NodeTreeTest(unittest.TestCase):
             pos=6
         )
 
-        self.assertTrue(self.nodeComparator.compare(node, ref_node))
+        self.assertTrue(self.node_comparator.compare(node, ref_node))
 
     def test_bracket_parsing(self):
         node = NodeTreeTest._to_node_tree('(1 + 2) × 3')
@@ -83,7 +83,7 @@ class NodeTreeTest(unittest.TestCase):
             pos=8
         )
 
-        self.assertTrue(self.nodeComparator.compare(node, ref_node))
+        self.assertTrue(self.node_comparator.compare(node, ref_node))
 
         node = NodeTreeTest._to_node_tree('3 + (2×(-1 + 10)) -5.5')
 
@@ -113,7 +113,7 @@ class NodeTreeTest(unittest.TestCase):
             pos=2
         )
 
-        self.assertTrue(self.nodeComparator.compare(node, ref_node))
+        self.assertTrue(self.node_comparator.compare(node, ref_node))
 
     def test_bracket_parsing_special(self):
         node = NodeTreeTest._to_node_tree('((1)) + 2')
@@ -125,7 +125,7 @@ class NodeTreeTest(unittest.TestCase):
             pos=6
         )
 
-        self.assertTrue(self.nodeComparator.compare(node, ref_node))
+        self.assertTrue(self.node_comparator.compare(node, ref_node))
 
         node = NodeTreeTest._to_node_tree('-(3 + 1)')
 
@@ -140,7 +140,7 @@ class NodeTreeTest(unittest.TestCase):
             pos=0
         )
 
-        self.assertTrue(self.nodeComparator.compare(node, ref_node))
+        self.assertTrue(self.node_comparator.compare(node, ref_node))
 
     def test_bracket_unmatch(self):
         with self.assertRaises(ParsingException) as cm:
@@ -172,7 +172,7 @@ class NodeTreeTest(unittest.TestCase):
             pos=2
         )
 
-        self.assertTrue(self.nodeComparator.compare(node, ref_node))
+        self.assertTrue(self.node_comparator.compare(node, ref_node))
 
         node = NodeTreeTest._to_node_tree('2 + -3!')
 
@@ -191,7 +191,7 @@ class NodeTreeTest(unittest.TestCase):
             pos=2
         )
 
-        self.assertTrue(self.nodeComparator.compare(node, ref_node))
+        self.assertTrue(self.node_comparator.compare(node, ref_node))
 
         node = NodeTreeTest._to_node_tree('(1 + 2)! ÷ 3')
 
@@ -236,7 +236,7 @@ class NodeTreeTest(unittest.TestCase):
             pos=8
         )
 
-        self.assertTrue(self.nodeComparator.compare(node, ref_node))
+        self.assertTrue(self.node_comparator.compare(node, ref_node))
 
     def test_basic_func_call(self):
         node = NodeTreeTest._to_node_tree('sin(20)')
@@ -247,7 +247,7 @@ class NodeTreeTest(unittest.TestCase):
             pos=0
         )
 
-        self.assertTrue(self.nodeComparator.compare(node, ref_node))
+        self.assertTrue(self.node_comparator.compare(node, ref_node))
 
         node = NodeTreeTest._to_node_tree('log(1, 3 × -1.4)')
 
@@ -269,7 +269,7 @@ class NodeTreeTest(unittest.TestCase):
             pos=0
         )
 
-        self.assertTrue(self.nodeComparator.compare(node, ref_node))
+        self.assertTrue(self.node_comparator.compare(node, ref_node))
 
     def test_complex_func_call(self):
         node = NodeTreeTest._to_node_tree('pow(log(100, 5 × 2), 2)')
@@ -295,7 +295,7 @@ class NodeTreeTest(unittest.TestCase):
             pos=0
         )
 
-        self.assertTrue(self.nodeComparator.compare(node, ref_node))
+        self.assertTrue(self.node_comparator.compare(node, ref_node))
 
         node = NodeTreeTest._to_node_tree('1.125×abs(-1)')
 
@@ -316,7 +316,7 @@ class NodeTreeTest(unittest.TestCase):
             pos=5
         )
 
-        self.assertTrue(self.nodeComparator.compare(node, ref_node))
+        self.assertTrue(self.node_comparator.compare(node, ref_node))
 
         node = NodeTreeTest._to_node_tree('-sin(2 × π)')
 
@@ -337,7 +337,7 @@ class NodeTreeTest(unittest.TestCase):
             pos=0
         )
 
-        self.assertTrue(self.nodeComparator.compare(node, ref_node))
+        self.assertTrue(self.node_comparator.compare(node, ref_node))
 
     def test_invalid_func_call(self):
         with self.assertRaises(ParsingException) as cm:

@@ -299,7 +299,7 @@ class CalculatorWindowBackboard(QtWidgets.QWidget):
         if event.type() == QEvent.KeyPress:
             if not self._eatGlobalShortcut(event):
                 # if global shortcut is not intercepted, use keyboard event handle
-                # of currnet actived keyboard
+                # of current actived keyboard
                 if self.proModeEnabled:
                     self._runtimePro.onKeyboardEvent(event)
                 else:

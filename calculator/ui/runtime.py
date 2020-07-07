@@ -6,10 +6,9 @@ from typing import Union, Optional, List, Tuple
 
 from PyQt5.QtCore import Qt, pyqtSignal, pyqtSlot, QObject
 
+import calculator.ui.config as config
 from calculator.core.evaluator import Evaluator, EvaluatorContext
 from calculator.core.exception import EvaluationException
-
-import calculator.ui.config as config
 
 
 ZERO = '0'
@@ -728,9 +727,9 @@ class CalculatorRuntimePro(CalculatorRuntimeStandard):
         self._evaluator = Evaluator(context)
 
         self._keyMap = {
-            Qt.Key_Period: (self._dotHandle,),
-            Qt.Key_Backspace: (self._eraseHandle,),
-            Qt.Key_Escape: (self._clearHandle,),
+            Qt.Key_Period: ((Qt.NoModifier, Qt.KeypadModifier), self._dotHandle,),
+            Qt.Key_Backspace: (Qt.NoModifier, self._eraseHandle,),
+            Qt.Key_Escape: (Qt.NoModifier, self._clearHandle,),
             Qt.Key_Plus: ((Qt.ShiftModifier, Qt.KeypadModifier), self._binaryOpHandle, '+'),
             Qt.Key_Minus: ((Qt.NoModifier, Qt.KeypadModifier), self._binaryOpHandle, '-'),
             Qt.Key_Asterisk: ((Qt.ShiftModifier, Qt.KeypadModifier), self._binaryOpHandle, '×'),
